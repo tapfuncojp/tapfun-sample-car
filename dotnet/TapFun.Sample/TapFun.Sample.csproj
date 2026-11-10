@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Sample exe that uses the C# code in csharp/TapFun (Windows, WinForms).
+    It is a window rather than a console app because console windows do not appear in the CAR stream.
+    Build: dotnet publish TapFun.Sample -c Release -o publish  (self-contained win-x64)
+  -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <!-- Lets you build the Windows exe on Linux or macOS too. -->
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <!-- The cloud runs the exe without installing anything, so bundle the .NET runtime. -->
+    <SelfContained>true</SelfContained>
+    <AssemblyName>TapFunSample</AssemblyName>
+    <RootNamespace>TapFun.Sample</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../csharp/TapFun.csproj" />
+  </ItemGroup>
+</Project>

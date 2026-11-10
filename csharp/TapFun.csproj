@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Builds the C# code in TapFun/ with the language version and API level that Unity supports
+    (C# 9, .NET Standard 2.1), so it fails here when something would not compile in Unity.
+    The code itself is in TapFun/; copy that folder into your project. This file is not needed there.
+  -->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <!-- Unity does not enable these; each file enables nullable annotations with #nullable enable. -->
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AssemblyName>TapFun</AssemblyName>
+    <RootNamespace>TapFun</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="TapFun/*.cs" />
+    <InternalsVisibleTo Include="TapFun.Tests" />
+  </ItemGroup>
+</Project>

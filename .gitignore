@@ -1,0 +1,14 @@
+# .NET
+bin/
+obj/
+dotnet/publish/
+TestResults/
+*.user
+
+# Godot
+godot/.godot/
+godot/build/
+
+# Release zips
+*.zip
+.DS_Store
