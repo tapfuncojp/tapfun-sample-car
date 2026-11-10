@@ -74,6 +74,7 @@ public sealed class TapFunSample : MonoBehaviour
         LaunchArgs args = LaunchArgs.FromCommandLine();
         Log($"apiHost={args.ApiHost} port={args.Port} userId={Mask(args.UserId)} bearerToken={Mask(args.BearerToken)}");
         Log($"username={args.Username} isPaidTimer={args.IsPaidTimer} isSp={args.IsSp} dlcs=[{string.Join(",", args.Dlcs)}]");
+        Log($"language={args.Language} country={args.Country}");
         if (!args.HasClientApiValues)
         {
             Log("--tapfun-user-id, --api-host and --bearer-token are required. Add {userId}, {apiHost} and {bearerToken} to the exe launch parameters.");

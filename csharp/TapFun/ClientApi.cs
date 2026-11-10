@@ -35,7 +35,8 @@ namespace TapFun
 
         /// <summary>
         /// Asks for the player's environment. The answer has
-        /// <c>from=getPlayerEnvironment</c>, <c>userAgent</c>, <c>isSP</c>, <c>authenticated</c> and <c>isPaidTimer</c>.
+        /// <c>from=getPlayerEnvironment</c>, <c>userAgent</c>, <c>isSP</c>, <c>authenticated</c>, <c>isPaidTimer</c>,
+        /// <c>language</c> and <c>country</c> (the same values as <see cref="LaunchArgs.Language"/> and <see cref="LaunchArgs.Country"/>).
         /// </summary>
         public static Dictionary<string, string> GetPlayerEnvironment() => Request("getPlayerEnvironment");
 

@@ -41,8 +41,21 @@ public class LaunchArgsTests
         Assert.Equal(LaunchArgs.DefaultPort, args.Port);
         Assert.False(args.IsPaidTimer);
         Assert.Empty(args.Dlcs);
+        Assert.Equal("", args.Language);
+        Assert.Equal("", args.Country);
         Assert.Equal("", args.Get("--unknown"));
         Assert.False(args.HasClientApiValues);
+    }
+
+    [Fact]
+    public void ReadsLanguageAndCountry()
+    {
+        // Not in the default launch parameters: added as "--lang {lang} --country {country}".
+        LaunchArgs args = LaunchArgs.Parse(new[] { "game.exe", "--type", "car", "--lang", "en-US", "--country", "JP", "--port", "10100" });
+
+        Assert.Equal("en-US", args.Language);
+        Assert.Equal("JP", args.Country);
+        Assert.Equal(10100, args.Port);
     }
 
     [Fact]

@@ -48,6 +48,7 @@ func _ready() -> void:
 	_log("username=%s isPaidTimer=%s isSp=%s dlcs=[%s]" % [
 		str(tapfun.args.get("--username", "")).uri_decode(), tapfun.args.get("--is-paid-timer", ""),
 		tapfun.args.get("--is-sp", ""), tapfun.args.get("--dlcs", "")])
+	_log("language=%s country=%s" % [tapfun.language, tapfun.country])
 	if not tapfun.has_client_api_values():
 		_log("--tapfun-user-id, --api-host and --bearer-token are required. Add {userId}, {apiHost} and {bearerToken} to the exe launch parameters.")
 		return

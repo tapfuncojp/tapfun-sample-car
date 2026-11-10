@@ -83,6 +83,7 @@ public sealed class MainForm : Form
         // Do not show the TapFun user ID or the Bearer token on screen.
         Log($"apiHost={_args.ApiHost} port={_args.Port} userId={Mask(_args.UserId)} bearerToken={Mask(_args.BearerToken)}");
         Log($"username={_args.Username} isPaidTimer={_args.IsPaidTimer} isSp={_args.IsSp} dlcs=[{string.Join(",", _args.Dlcs)}]");
+        Log($"language={_args.Language} country={_args.Country}");
         if (!_args.HasClientApiValues)
         {
             Log("--tapfun-user-id, --api-host and --bearer-token are required. Add {userId}, {apiHost} and {bearerToken} to the exe launch parameters.");

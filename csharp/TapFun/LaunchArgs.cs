@@ -8,8 +8,9 @@ namespace TapFun
     /// Values that TapFun passes to the exe as command-line arguments.
     /// TapFun replaces the placeholders written in "exe launch parameters" in the Publisher Console,
     /// for example <c>--tapfun-user-id {userId} --api-host {apiHost} --bearer-token {bearerToken} --port {port}</c>.
-    /// The option names below are the ones in the default launch parameters. If you renamed them,
-    /// read your names with <see cref="Get"/>.
+    /// The option names below are the ones in the default launch parameters, except <c>--lang</c> and <c>--country</c>,
+    /// which are not in them: add <c>--lang {lang} --country {country}</c> to get them.
+    /// If you renamed the options, read your names with <see cref="Get"/>.
     /// </summary>
     public sealed class LaunchArgs
     {
@@ -60,6 +61,18 @@ namespace TapFun
                 return codes;
             }
         }
+
+        /// <summary>
+        /// The player's most preferred browser language (<c>--lang</c>), a BCP 47 tag such as <c>ja</c> or <c>en-US</c>.
+        /// Empty when it is not passed or TapFun could not get it.
+        /// </summary>
+        public string Language => Get("--lang");
+
+        /// <summary>
+        /// The country the player connects from (<c>--country</c>), such as <c>JP</c>.
+        /// Empty when it is not passed or TapFun could not determine it.
+        /// </summary>
+        public string Country => Get("--country");
 
         /// <summary><c>true</c> when the values needed to call the API are present.</summary>
         public bool HasClientApiValues => UserId != "" && ApiHost != "" && BearerToken != "";

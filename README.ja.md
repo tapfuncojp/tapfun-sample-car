@@ -26,6 +26,8 @@ TapFun のクラウドゲーミング（Tencent Cloud CAR）で動くゲーム�
    ```
 
    TapFun は exe を起動するたびに、プレースホルダをプレイヤーごとの値に置き換えます。サンプルが使うのは `{userId}`、`{apiHost}`、`{bearerToken}`、`{port}` です。
+
+   プレイヤーの言語と接続元の国は、この値に入っていません。使うときは `--lang {lang} --country {country}` を足してください。サンプルは画面に表示します（[country の判定](https://tapfun.dev/ja/cloudgaming/#country)）。getPlayerEnvironment の応答の `language` と `country` でも受け取れますが、起動引数なら起動したときからあります。
 2. exe は UDP `127.0.0.1:{port}`（通常は `10100`）で待ち受け、受け取ったメッセージごとに `OK` を返します。
 3. exe はリクエストを `POST https://{apiHost}/api/v1/custom_event?userId={userId}` で送ります。`Authorization: Bearer {bearerToken}` を付け、本文は `req=getPlayerEnvironment` のような `application/x-www-form-urlencoded` です。**`User-Agent` ヘッダーは必須**で、無いリクエストは 403 になります。
 4. TapFun はリクエストをプレイヤーのブラウザに届けます。応答は `from=getPlayerEnvironment&isSP=0&authenticated=1&...` のようなクエリストリングで UDP に返ってきます。TapFun からリクエストなしで届く通知もあり、これには `req=clientStatus` が付きます。

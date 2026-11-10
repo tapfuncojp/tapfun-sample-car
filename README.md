@@ -26,6 +26,8 @@ The full specification is in the [developer portal](https://tapfun.dev/en/cloudg
    ```
 
    TapFun replaces the placeholders with each player's values when it launches the exe. The samples need `{userId}`, `{apiHost}`, `{bearerToken}` and `{port}`.
+
+   The player's language and the country the player connects from are not in the default value. To get them, add `--lang {lang} --country {country}`; the samples show them ([How country is determined](https://tapfun.dev/en/cloudgaming/#country)). getPlayerEnvironment also returns them as `language` and `country`, but the launch arguments are there from the start.
 2. The exe listens on UDP `127.0.0.1:{port}` (usually `10100`) and replies `OK` to each message.
 3. The exe sends a request as `POST https://{apiHost}/api/v1/custom_event?userId={userId}` with `Authorization: Bearer {bearerToken}` and an `application/x-www-form-urlencoded` body such as `req=getPlayerEnvironment`. **A `User-Agent` header is required**; requests without one are rejected with 403.
 4. TapFun forwards the request to the player's browser. Answers come back over UDP as query strings, for example `from=getPlayerEnvironment&isSP=0&authenticated=1&...`. TapFun also sends notifications on its own, with `req=clientStatus`.

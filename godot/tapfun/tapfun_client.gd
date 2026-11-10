@@ -41,6 +41,13 @@ var api_host := ""
 var bearer_token := ""
 ## UDP port to receive messages from TapFun (--port). Usually 10100.
 var port := 10100
+## The player's most preferred browser language (--lang), a BCP 47 tag such as "ja" or "en-US".
+## Empty when it is not passed or TapFun could not get it. Not in the default launch parameters:
+## add --lang {lang} --country {country}.
+var language := ""
+## The country the player connects from (--country), such as "JP".
+## Empty when it is not passed or TapFun could not determine it.
+var country := ""
 
 var _udp := PacketPeerUDP.new()
 var _multi_line_chunks := {}  # label -> {seq: text}
@@ -56,6 +63,8 @@ func _ready() -> void:
 	api_host = args.get("--api-host", "")
 	bearer_token = args.get("--bearer-token", "")
 	port = int(args.get("--port", "10100"))
+	language = args.get("--lang", "")
+	country = args.get("--country", "")
 
 
 ## true when the values needed to call the API are present.
@@ -161,7 +170,7 @@ static func launch_success_notice() -> Dictionary:
 
 
 ## Asks for the player's environment. The answer has from=getPlayerEnvironment,
-## userAgent, isSP, authenticated and isPaidTimer.
+## userAgent, isSP, authenticated, isPaidTimer, language and country.
 static func get_player_environment() -> Dictionary:
 	return {"req": "getPlayerEnvironment"}
 
